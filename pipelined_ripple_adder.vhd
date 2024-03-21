@@ -21,7 +21,13 @@
 --       The number of stages in the pipeline equals DATA_WIDTH.
 -- +--------------------------------------------------------------------+
 --   Comments:
---       A template for a 3-stage pipeline is shown below:
+--       1. Generalized adder interface:
+--           clock (I), reset (I),
+--           enable (I), flush (I),
+--           a (I), b (I),
+--           valid (O),
+--           s (O)
+--       2. A template for a 3-stage pipeline is shown below:
 --               | +--+     | +--+     | +--+     |
 --           in -|>|  |--[]-|>|  |--[]-|>|  |--[]-|> out
 --              .|.|  |  .. | |  |  .. | |  |  .. |
@@ -43,8 +49,8 @@ entity pipelined_ripple_adder is
         DATA_WIDTH: integer := 32
     );
     port (
-        clock, reset: in std_logic;
-        enable: in std_logic;
+        clock, reset, enable: in std_logic;
+        flush: in std_logic;
         a, b: in std_logic_vector(DATA_WIDTH - 1 downto 0);
         c_in: in std_logic;
         valid: out std_logic;
@@ -87,7 +93,7 @@ begin
     -- validity
     valid_next(0) <= enable; -- Theoretically, this is always true because clock ticks only when enable is true
     valid_relations: for i in 1 to EOP generate
-        valid_next(i) <= valid_reg(i - 1);
+        valid_next(i) <= valid_reg(i - 1) when flush = '0' else '0';
     end generate;
     
     -- adder
