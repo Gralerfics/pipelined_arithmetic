@@ -2,15 +2,16 @@
 --   Pipelined Ripple Adder
 -- +--------------------------------------------------------------------+
 --   Parameters:
---       DATA_WIDTH     Enable clock signal
+--       DATA_WIDTH     data width
 -- +--------------------------------------------------------------------+
 --   Ports:
 --       clock          clock signal
 --       reset          asynchronous reset signal
 --       enable         clock enable signal
---           TODO: enable AND (NOT clock) to remove hazard?
+--       flush          flush signal
 --       a, b           operands
 --       c_in           carry in
+--       valid          valid signal
 --       s              sum of a and b
 --       c_out          carry out
 --           Notice that c_out can not be simply concatenated with s 
@@ -21,13 +22,7 @@
 --       The number of stages in the pipeline equals DATA_WIDTH.
 -- +--------------------------------------------------------------------+
 --   Comments:
---       1. Generalized adder interface:
---           clock (I), reset (I),
---           enable (I), flush (I),
---           a (I), b (I),
---           valid (O),
---           s (O)
---       2. A template for a 3-stage pipeline is shown below:
+--       A template for a 3-stage pipeline is shown below:
 --               | +--+     | +--+     | +--+     |
 --           in -|>|  |--[]-|>|  |--[]-|>|  |--[]-|> out
 --              .|.|  |  .. | |  |  .. | |  |  .. |
