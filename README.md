@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Template pipelines prepared for `nodalHDL`.
+Template pipelines prepared for [`nodalHDL`](https://github.com/Gralerfics/nodalHDL).
 
 The origin purpose is to solve the limitations of `generic` or `parameter` in `VHDL` and `Verilog HDL` in an approach of string substitution. For example when we want to use the adder from Vivado IPs, `generic` can not be used to select from generated IPs with different names. The identifier on the right of `component` can not be changed.
 
