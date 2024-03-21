@@ -8,9 +8,11 @@ The origin purpose is to solve the limitations of `generic` or `parameter` in `V
 
 ## Template Structure
 
-Each template is stored in a folder with the same name of the template. There should be a `config.json` and the architecture files in the folder (a `README.md` is also welcomed).
+Each template is stored in a single folder. There should be a `config.json` and the architecture files in the folder (a `README.md` is also welcomed).
 
-The template information will be used to 
+The name of the template is decided by the information in `config.json`, instead of the folder name.
+
+Only folders those contain `config.json` will be considered as a template.
 
 ### About `config.json`
 
@@ -18,6 +20,7 @@ Example:
 
 ```json
 {
+    "name": "adder",
     "hyperparameters": [
         {
             "name": "WIDTH",
@@ -53,7 +56,7 @@ Example:
 }
 ```
 
-The root object contains two properties, `hyperparameters` and `architectures`.
+The root object contains `name`, `hyperparameters` and `architectures`.
 
 `hyperparameters` is an array of objects, each object contains `name (str)`, `type (str)`, and `default (str)`. Each object represents a hyperparameter. Use `${NAME}` to call HP.
 

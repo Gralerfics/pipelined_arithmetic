@@ -1,9 +1,15 @@
 {
+    "name": "adder",
     "hyperparameters": [
         {
             "name": "WIDTH",
             "type": "integer",
             "default": "32"
+        },
+        {
+            "name": "STAGE",
+            "type": "integer",
+            "default": "${WIDTH}"
         }
     ],
     "architectures": {
@@ -21,7 +27,7 @@
                     "files": ["vivado_adder.template"]
                 }
             ],
-            "stages": "${WIDTH}"
+            "stages": "${STAGE}"
         }
     }
 }

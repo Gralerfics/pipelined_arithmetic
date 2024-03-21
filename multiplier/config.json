@@ -1,0 +1,40 @@
+{
+    "name": "multiplier",
+    "hyperparameters": [
+        {
+            "name": "WIDTH",
+            "type": "integer",
+            "default": "32"
+        },
+        {
+            "name": "STAGE",
+            "type": "integer",
+            "default": "${WIDTH}"
+        },
+        {
+            "name": "SIGNED",
+            "type": "bit",
+            "default": "1"
+        },
+        {
+            "name": "OUTPUT_MSB",
+            "type": "integer",
+            "default": "2 * ${WIDTH} - 1"
+        },
+        {
+            "name": "OUTPUT_LSB",
+            "type": "integer",
+            "default": "0"
+        }
+    ],
+    "architectures": {
+        "vivado_multiplier": {
+            "includes": [
+                {
+                    "files": ["vivado_multiplier.template"]
+                }
+            ],
+            "stages": "${STAGE}"
+        }
+    }
+}
