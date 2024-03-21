@@ -1,13 +1,14 @@
-# adder
+# multiplier
 
 ## Hyperparameters
-
-> parameters to be substituted, use ${name} to quote.
 
 | Name | Type | Description | Default |
 |------|------|-------------|---------|
 |`WIDTH`|integer|bit width of the operands|`32`|
-|`STAGE`|integer|number of pipeline stages, only works for `vivado_adder`|`${WIDTH}`|
+|`STAGE`|integer|number of pipeline stages, only works for `vivado_multiplier`|`${WIDTH}`|
+|`SIGNED`|bit|whether the operands are signed|`1`|
+|`OUTPUT_MSB`|integer|most significant bit of the output|`${WIDTH} * 2 - 1`|
+|`OUTPUT_LSB`|integer|least significant bit of the output|`0`|
 
 ## Ports
 
@@ -19,14 +20,10 @@
 |`flush`|`std_logic`|pipeline flush signal|
 |`a, b`|`std_logic_vector(${WIDTH} - 1 downto 0)`|operands|
 |`valid`|`std_logic`|valid signal|
-|`s`|`std_logic_vector(${WIDTH} - 1 downto 0)`|sum of `a` and `b`|
+|`p`|`std_logic_vector(${OUTPUT_MSB} - ${OUTPUT_LSB} downto 0)`|product of `a` and `b`|
 
 ## Architectures
 
-### pipelined_ripple_adder
-
-TODO
-
-### vivado_adder
+### vivado_multiplier
 
 TODO
