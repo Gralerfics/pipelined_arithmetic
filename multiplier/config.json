@@ -31,11 +31,11 @@
         "vivado_multiplier": {
             "includes": [
                 {
-                    "files": ["vivado_multiplier.template"]
+                    "files": ["vivado_multiplier.vhd"]
                 }
             ],
             "stages": "${STAGE}",
-            "notice": "Remember to create a multiplier IP in Vivado named vivado_multiplier_${WIDTH}_${STAGE}_${SIGNED}_${OUTPUT_MSB}_${OUTPUT_LSB} ..."
+            "notice": "Remember to create a multiplier IP in Vivado named ip_vivado_multiplier_${WIDTH}_${STAGE}_${SIGNED}_${OUTPUT_MSB}_${OUTPUT_LSB} ..."
         }
     }
 }

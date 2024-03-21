@@ -16,7 +16,7 @@
         "pipelined_ripple_adder": {
             "includes": [
                 {
-                    "files": ["pipelined_ripple_adder.template"]
+                    "files": ["pipelined_ripple_adder.vhd"]
                 }
             ],
             "stages": "${WIDTH}"
@@ -24,11 +24,11 @@
         "vivado_adder": {
             "includes": [
                 {
-                    "files": ["vivado_adder.template"]
+                    "files": ["vivado_adder.vhd"]
                 }
             ],
             "stages": "${STAGE}",
-            "notice": "Remember to create a adder IP in Vivado named vivado_adder_${WIDTH}_${STAGE} ..."
+            "notice": "Remember to create a adder IP in Vivado named ip_vivado_adder_${WIDTH}_${STAGE} ..."
         }
     }
 }
