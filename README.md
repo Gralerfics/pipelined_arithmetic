@@ -46,11 +46,12 @@ Example:
                     "files": ["imported_module.vhd"],
                     "from": "other_template",
                     "parameters": {
-                        "WIDTH": "$WIDTH"
+                        "WIDTH": "${WIDTH}"
                     }
                 }
             ],
-            "stages": "${STAGE}"
+            "stages": "${STAGE}",
+            "notice": "This is a pipelined ripple adder with WIDTH = ${WIDTH}."
         }
     }
 }
@@ -62,10 +63,12 @@ The root object contains `name`, `hyperparameters` and `architectures`.
 
 > Hyperparameters (HP) should be permitted to call previous parameters. For example, one of the HPs' default value is the value of another HP.
 
-`architectures` is an dictionary, where each of the key-value pair represents an available architecture with the function and the interface defined in `description.md`. Key is the name of the architecture and the value is an object, which contains `files` and `stages`.
+`architectures` is an dictionary, where each of the key-value pair represents an available architecture with the function and the interface defined in `description.md`. Key is the name of the architecture and the value is an object, which contains `files`, `stages` and `notice` (optional).
 
 `includes` is a list of objects, each of the object represent a series of included template files that need to be substituded and copyed.
 
 > Each of the object should possess a list named `files`. In default these files should be in the folder of this template. If there is `from` and `parameters`, the files are imported from other templates with the provided parameters.
 
 `stages` is the number of pipeline stages. It is an string which needs to be substituded first, and then use `eval` to be calculated as an Python expression.
+
+`notice` is a string, which is used to inform the user about something. It is optional and in default it is an empty string. This information may be used by the backend (TemplateInstantiator).

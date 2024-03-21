@@ -27,7 +27,8 @@
                     "files": ["vivado_adder.template"]
                 }
             ],
-            "stages": "${STAGE}"
+            "stages": "${STAGE}",
+            "notice": "Remember to create a adder IP in Vivado named vivado_adder_${WIDTH}_${STAGE} ..."
         }
     }
 }
