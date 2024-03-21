@@ -1,8 +1,8 @@
 -- +--------------------------------------------------------------------+
 --   Pipelined Ripple Adder
 -- +--------------------------------------------------------------------+
---   Parameters:
---       DATA_WIDTH     data width
+--   Description:
+--       A pipelined ripple adder.
 -- +--------------------------------------------------------------------+
 --   Ports:
 --       clock          clock signal
@@ -18,21 +18,20 @@
 --           when the result is parsed as a signed number. It is 
 --           recommended to ignore c_out.
 -- +--------------------------------------------------------------------+
---   Description:
---       The number of stages in the pipeline equals DATA_WIDTH.
--- +--------------------------------------------------------------------+
 --   Comments:
---       A template for a 3-stage pipeline is shown below:
+--       1. A template for a 3-stage pipeline is shown below:
 --               | +--+     | +--+     | +--+     |
 --           in -|>|  |--[]-|>|  |--[]-|>|  |--[]-|> out
 --              .|.|  |  .. | |  |  .. | |  |  .. |
 --           in -|>|  |--[]-|>|  |--[]-|>|  |--[]-|> out
 --               | +--+     | +--+     | +--+     |
 --               |  Stage0  |  Stage1  |  Stage2  |
---       ('[]' represents combinational logic; indexing starts at 0)
+--           ('[]' represents combinational logic; indexing starts at 0)
+--       2. The number of stages in the pipeline equals ${WIDTH}.
 -- +--------------------------------------------------------------------+
 --   TODO:
---       create only necessary signals, not a whole matrix.
+--       1. create only necessary signals, not a whole matrix.
+--       2. description.
 -- +--------------------------------------------------------------------+
 
 library IEEE;
@@ -40,23 +39,20 @@ use IEEE.std_logic_1164.all;
 
 
 entity pipelined_ripple_adder is
-    generic (
-        DATA_WIDTH: integer := 32
-    );
     port (
         clock, reset, enable: in std_logic;
         flush: in std_logic;
-        a, b: in std_logic_vector(DATA_WIDTH - 1 downto 0);
+        a, b: in std_logic_vector(${WIDTH} - 1 downto 0);
         c_in: in std_logic;
         valid: out std_logic;
-        s: out std_logic_vector(DATA_WIDTH - 1 downto 0);
+        s: out std_logic_vector(${WIDTH} - 1 downto 0);
         c_out: out std_logic
     );
 end entity;
 
 
 architecture defaults of pipelined_ripple_adder is
-    constant EOP: integer := DATA_WIDTH - 1;
+    constant EOP: integer := ${WIDTH} - 1;
 
     type BitsArray is array (0 to EOP) of std_logic_vector(EOP downto 0);
     type BitArray is array (0 to EOP) of std_logic;

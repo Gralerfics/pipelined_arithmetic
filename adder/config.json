@@ -1,0 +1,27 @@
+{
+    "hyperparameters": [
+        {
+            "name": "WIDTH",
+            "type": "integer",
+            "default": "32"
+        }
+    ],
+    "architectures": {
+        "pipelined_ripple_adder": {
+            "includes": [
+                {
+                    "files": ["pipelined_ripple_adder.template"]
+                }
+            ],
+            "stages": "${WIDTH}"
+        },
+        "vivado_adder": {
+            "includes": [
+                {
+                    "files": ["vivado_adder.template"]
+                }
+            ],
+            "stages": "${WIDTH}"
+        }
+    }
+}
