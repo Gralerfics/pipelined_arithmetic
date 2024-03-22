@@ -10,6 +10,11 @@
             "name": "STAGE",
             "type": "integer",
             "default": "${WIDTH}"
+        },
+        {
+            "name": "SIGNED",
+            "type": "bit",
+            "default": "0"
         }
     ],
     "architectures": {
@@ -28,7 +33,7 @@
                 }
             ],
             "stages": "${STAGE}",
-            "notice": "Remember to create a adder IP in Vivado named ip_vivado_adder_${WIDTH}_${STAGE} ..."
+            "notice": "Remember to create a adder IP in Vivado named ip_vivado_adder_${__HYPERPARAMS_JOINED__} ..."
         }
     }
 }

@@ -33,6 +33,11 @@ Example:
             "name": "STAGE",
             "type": "integer",
             "default": "${WIDTH}"
+        },
+        {
+            "name": "STRTEST",
+            "type": "string",
+            "default": "hello"
         }
     ],
     "architectures": {
@@ -40,7 +45,7 @@ Example:
             "includes": [
                 {
                     "files": [
-                        "pipelined_ripple_adder.vhd",
+                        ["pipelined_ripple_adder.vhd", "__main__"],
                         "abc/d/e.vhd"
                     ]
                 },
@@ -63,21 +68,31 @@ The root object contains `name`, `hyperparameters` and `architectures`.
 
 `hyperparameters` is an array of objects, each object contains `name`, `type`, and `default` (optional). Each object represents a hyperparameter. Use `${NAME}` to call HP. If the `default` is not provided, the HP is required.
 
-> Hyperparameters (HP) should be permitted to call previous parameters. For example, one of the HPs' default value is the value of another HP.
-
-> Available types: `integer`, `string`, `bit`, to be continued ...
+> Hyperparameters (HP) should be permitted to call previous parameters. For example, one of the HPs' default value is the value of another HP. Available types: `integer`, `string`, `bit`, to be continued ...
 
 `architectures` is an dictionary, where each of the key-value pair represents an available architecture with the function and the interface defined in `description.md`. Key is the name of the architecture and the value is an object, which contains `files`, `stages` and `notice` (optional).
 
 `includes` is a list of objects, each of the object represent a series of included template files that need to be substituded and copyed.
 
-> Each of the object should possess a list named `files`. In default these files should be in the folder of this template. If there is `from` and `parameters`, the files are imported from other templates with the provided parameters.
+Each of the object should possess a list named `files`. In default these files should be in the folder of this template. If there is `from` and `parameters`, the files are imported from other templates with the provided parameters.
+
+The elements in `files` can also be a list instead of a string. The second element of the list is the custom name of the target file (in default it is `${__TARGET_NAME__}`). It is important that **you must set the second element as `'__main__'` for the main module** of the architecture.
 
 `stages` is the number of pipeline stages. It is an string which needs to be substituded first, and then use `eval` to be calculated as an Python expression.
 
 `notice` is a string, which is used to inform the user about something. It is optional and in default it is an empty string. This information may be used by the backend parsers.
 
 Notice that `default`, values of `parameters` and `stages` are substitude and evaluate required. And `notice` and the content of files are substitude required.
+
+In addition, there will be some built-in parameters:
+
+| Name | Type | Value | Description |
+|------|------|-------|-------------|
+|`__HYPERPARAMS_JOINED__`|`string`|`'${...}_${...}_..._${...}'`|Joined hyperparameters with `_`.|
+|`__CALLER_TEMPLATE_NAME__`|`string`||The name of the template that import the file.|
+|`__MASTER_TEMPLATE_NAME__`|`string`||The name of the template where the file lies in.|
+|`__CALLER_ARCH_NAME__`|`string`||The name of the architecture that import the file.|
+|`__TARGET_NAME__`|`string`||The name of the target file name (without ext name). The main module of the architecture must use this as the module name, while the assistant modules are not required. Because the main module will be called by nodalHDL, while the assistant modules are called by the user itself.|
 
 ## TODO: other types like fixed, float, etc.
 

@@ -1,8 +1,10 @@
-# adder
+# addsub
+
+Adder & subtractor for signed or unsigned integers.
 
 ## Hyperparameters
 
-> parameters to be substituted, use ${name} to quote.
+> Parameters to be substituted, use ${name} to quote.
 
 | Name | Type | Description | Default |
 |------|------|-------------|---------|

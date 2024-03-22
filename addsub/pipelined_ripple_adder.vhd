@@ -38,7 +38,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 
-entity pipelined_ripple_adder_${WIDTH}_${STAGE} is
+entity ${__TARGET_NAME__} is
     port (
         clock, reset, enable: in std_logic;
         flush: in std_logic;
@@ -51,7 +51,7 @@ entity pipelined_ripple_adder_${WIDTH}_${STAGE} is
 end entity;
 
 
-architecture defaults of pipelined_ripple_adder_${WIDTH}_${STAGE} is
+architecture defaults of ${__TARGET_NAME__} is
     constant EOP: integer := ${WIDTH} - 1;
 
     type BitsArray is array (0 to EOP) of std_logic_vector(EOP downto 0);

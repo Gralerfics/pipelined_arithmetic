@@ -1,0 +1,59 @@
+{
+    "name": "test",
+    "hyperparameters": [
+        {
+            "name": "WIDTH",
+            "type": "integer",
+            "default": "32"
+        },
+        {
+            "name": "STAGE",
+            "type": "integer",
+            "default": "${WIDTH}"
+        },
+        {
+            "name": "SIGNED",
+            "type": "bit",
+            "default": "1"
+        },
+        {
+            "name": "OUTPUT_MSB",
+            "type": "integer",
+            "default": "2 * ${WIDTH} - 1"
+        },
+        {
+            "name": "OUTPUT_LSB",
+            "type": "integer",
+            "default": "0"
+        },
+        {
+            "name": "STRTEST",
+            "type": "string",
+            "default": "hello"
+        },
+        {
+            "name": "STRTEST2",
+            "type": "string",
+            "default": "${STRTEST}abc${STRTEST}"
+        }
+    ],
+    "architectures": {
+        "test_arch": {
+            "includes": [
+                {
+                    "files": [["test.vhd", "__main__"]]
+                },
+                {
+                    "files": [["vivado_adder.vhd", "custom_name_${OUTPUT_MSB}_test.vhd"], "pipelined_ripple_adder.vhd"],
+                    "from": "addsub",
+                    "parameters": {
+                        "WIDTH": "${WIDTH} + 5",
+                        "STAGE": "${OUTPUT_MSB} * 2 - 1"
+                    }
+                }
+            ],
+            "stages": "${STAGE}",
+            "notice": "test_${__HYPERPARAMS_JOINED__}, str is ${STRTEST} and ${STRTEST2} ..."
+        }
+    }
+}

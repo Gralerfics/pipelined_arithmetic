@@ -1,30 +1,3 @@
--- +--------------------------------------------------------------------+
---   Vivado Multiplier IP
--- +--------------------------------------------------------------------+
---   Description:
---       Using IP core for multiplication from Vivado.
--- +--------------------------------------------------------------------+
---   Ports:
---       clock          clock signal
---       reset          asynchronous reset signal
---       enable         clock enable signal
---       flush          flush signal
---       a, b           operands
---       valid          valid signal
---       p              product of a and b
--- +--------------------------------------------------------------------+
---   Comments:
---       Vivado IP `Adder/Subtracter` configurations:
---           Component Name:            ip_vivado_multiplier_${__HYPERPARAMS_JOINED__}
---           Data Type:                 (Un)signed, (Un)signed (related to ${SIGNED})
---           Width:                     ${WIDTH}, ${WIDTH}
---           Use Custom Output Width:   Checked
---           Output MSB:                ${OUTPUT_MSB}
---           Output LSB:                ${OUTPUT_LSB}
---           Pipeline Stages:           ${STAGE}
---           Clock Enable:              Checked
--- +--------------------------------------------------------------------+
-
 library IEEE;
 use IEEE.std_logic_1164.all;
 
@@ -41,7 +14,7 @@ end entity;
 
 
 architecture defaults of ${__TARGET_NAME__} is
-    component ip_vivado_multiplier_${__HYPERPARAMS_JOINED__} is
+    component test_${__HYPERPARAMS_JOINED__} is
         port (
             CLK: in std_logic;
             CE: in std_logic;
@@ -56,7 +29,7 @@ architecture defaults of ${__TARGET_NAME__} is
 
     signal valid_reg, valid_next: BitArray;
 begin
-    multiplier: ip_vivado_multiplier_${__HYPERPARAMS_JOINED__}
+    multiplier: test_${__HYPERPARAMS_JOINED__}
         port map (
             CLK => clock,
             CE => enable,

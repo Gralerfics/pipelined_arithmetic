@@ -35,7 +35,7 @@
                 }
             ],
             "stages": "${STAGE}",
-            "notice": "Remember to create a multiplier IP in Vivado named ip_vivado_multiplier_${WIDTH}_${STAGE}_${SIGNED}_${OUTPUT_MSB}_${OUTPUT_LSB} ..."
+            "notice": "Remember to create a multiplier IP in Vivado named ip_vivado_multiplier_${__HYPERPARAMS_JOINED__} ..."
         }
     }
 }

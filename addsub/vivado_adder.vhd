@@ -15,7 +15,7 @@
 -- +--------------------------------------------------------------------+
 --   Comments:
 --       Vivado IP `Adder/Subtracter` configurations:
---           Component Name:            ip_vivado_adder_${WIDTH}_${STAGE}
+--           Component Name:            ip_vivado_adder_${__HYPERPARAMS_JOINED__}
 --           Input Type:                Unsigned, Unsigned
 --           Input Width:               ${WIDTH}, ${WIDTH}
 --           Add Mode:                  Add
@@ -29,7 +29,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 
-entity vivado_adder_${WIDTH}_${STAGE} is
+entity ${__TARGET_NAME__} is
     port (
         clock, reset, enable: in std_logic;
         flush: in std_logic;
@@ -40,8 +40,8 @@ entity vivado_adder_${WIDTH}_${STAGE} is
 end entity;
 
 
-architecture defaults of vivado_adder_${WIDTH}_${STAGE} is
-    component ip_vivado_adder_${WIDTH}_${STAGE} is
+architecture defaults of ${__TARGET_NAME__} is
+    component ip_vivado_adder_${__HYPERPARAMS_JOINED__} is
         port (
             CLK: in std_logic;
             CE: in std_logic;
@@ -56,7 +56,7 @@ architecture defaults of vivado_adder_${WIDTH}_${STAGE} is
 
     signal valid_reg, valid_next: BitArray;
 begin
-    adder: ip_vivado_adder_${WIDTH}_${STAGE}
+    adder: ip_vivado_adder_${__HYPERPARAMS_JOINED__}
         port map (
             CLK => clock,
             CE => enable,
