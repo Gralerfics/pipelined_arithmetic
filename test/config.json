@@ -37,6 +37,11 @@
             "default": "${STRTEST}abc${STRTEST}"
         }
     ],
+    "ports": [
+        ["a", "${WIDTH}", "in"],
+        ["b", "${WIDTH}", "in"],
+        ["p", "${OUTPUT_MSB} - ${OUTPUT_LSB} + 1", "out"]
+    ],
     "architectures": {
         "test_arch": {
             "includes": [

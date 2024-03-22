@@ -12,6 +12,9 @@
             "default": "0"
         }
     ],
+    "ports": [
+        TODO
+    ],
     "architectures": {
         "pipelined_comparator": {
             "includes": [

@@ -17,6 +17,11 @@
             "default": "0"
         }
     ],
+    "ports": [
+        ["a", "${WIDTH}", "in"],
+        ["b", "${WIDTH}", "in"],
+        ["s", "${WIDTH}", "out"]
+    ],
     "architectures": {
         "pipelined_ripple_adder": {
             "includes": [

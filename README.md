@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Template pipelines prepared for [`nodalHDL`](https://github.com/Gralerfics/nodalHDL).
+Template pipelines prepared for [nodalHDL](https://github.com/Gralerfics/nodalHDL).
 
 The origin purpose is to solve the limitations of `generic` or `parameter` in `VHDL` and `Verilog HDL` in an approach of string substitution. For example when we want to use the adder from Vivado IPs, `generic` can not be used to select from generated IPs with different names. The identifier on the right of `component` can not be changed.
 
@@ -40,6 +40,11 @@ Example:
             "default": "hello"
         }
     ],
+    "ports": [
+        ["a", "${WIDTH}", "in"],
+        ["b", "${WIDTH}", "in"],
+        ["s", "${WIDTH}", "out"]
+    ],
     "architectures": {
         "pipelined_ripple_adder": {
             "includes": [
@@ -64,11 +69,25 @@ Example:
 }
 ```
 
-The root object contains `name`, `hyperparameters` and `architectures`.
+The root object contains `name`, `hyperparameters`, `ports` and `architectures`.
 
 `hyperparameters` is an array of objects, each object contains `name`, `type`, and `default` (optional). Each object represents a hyperparameter. Use `${NAME}` to call HP. If the `default` is not provided, the HP is required.
 
 > Hyperparameters (HP) should be permitted to call previous parameters. For example, one of the HPs' default value is the value of another HP. Available types: `integer`, `string`, `bit`, to be continued ...
+
+`ports` is an list of lists, each of the list represents a port. The first element is the name of the port, the second element is the length of the port, the third element is the direction of the port.
+
+> Defaultly we only use `std_logic(_vector)` (if in VHDL), so the only thing matters is the length of the port.
+
+`ports` does not need to contain the pipeline standard ports:
+
+| Name | Direction | Type in VHDL | Description |
+|------|-----------|--------------|-------------|
+|`clock`|`in`|`std_logic`|clock signal|
+|`reset`|`in`|`std_logic`|asynchronous reset signal|
+|`enable`|`in`|`std_logic`|clock enable signal (TODO: use enable&(~clock) to remove hazard?)|
+|`flush`|`in`|`std_logic`|pipeline flush signal|
+|`valid`|`out`|`std_logic`|valid signal|
 
 `architectures` is an dictionary, where each of the key-value pair represents an available architecture with the function and the interface defined in `description.md`. Key is the name of the architecture and the value is an object, which contains `files`, `stages` and `notice` (optional).
 

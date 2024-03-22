@@ -27,6 +27,11 @@
             "default": "0"
         }
     ],
+    "ports": [
+        ["a", "${WIDTH}", "in"],
+        ["b", "${WIDTH}", "in"],
+        ["p", "${OUTPUT_MSB} - ${OUTPUT_LSB} + 1", "out"]
+    ],
     "architectures": {
         "vivado_multiplier": {
             "includes": [
