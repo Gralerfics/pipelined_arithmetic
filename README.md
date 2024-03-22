@@ -78,3 +78,7 @@ The root object contains `name`, `hyperparameters` and `architectures`.
 `notice` is a string, which is used to inform the user about something. It is optional and in default it is an empty string. This information may be used by the backend parsers.
 
 Notice that `default`, values of `parameters` and `stages` are substitude and evaluate required. And `notice` and the content of files are substitude required.
+
+## TODO: other types like fixed, float, etc.
+
+## TODO: built-in templates indentification. Or regard them all as modules, and use override in `direct`.
