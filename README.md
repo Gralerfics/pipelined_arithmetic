@@ -63,7 +63,7 @@ Example:
                 }
             ],
             "stages": "${STAGE}",
-            "notice": "This is a pipelined ripple adder with WIDTH = ${WIDTH}."
+            "reminder": "This is a pipelined ripple adder with WIDTH = ${WIDTH}."
         }
     }
 }
@@ -89,7 +89,7 @@ The root object contains `name`, `hyperparameters`, `ports` and `architectures`.
 |`flush`|`in`|`std_logic`|pipeline flush signal|
 |`valid`|`out`|`std_logic`|valid signal|
 
-`architectures` is an dictionary, where each of the key-value pair represents an available architecture with the function and the interface defined in `description.md`. Key is the name of the architecture and the value is an object, which contains `files`, `stages` and `notice` (optional).
+`architectures` is an dictionary, where each of the key-value pair represents an available architecture with the function and the interface defined in `description.md`. Key is the name of the architecture and the value is an object, which contains `files`, `stages` and `reminder` (optional).
 
 `includes` is a list of objects, each of the object represent a series of included template files that need to be substituded and copyed.
 
@@ -99,9 +99,9 @@ The elements in `files` can also be a list instead of a string. The second eleme
 
 `stages` is the number of pipeline stages. It is an string which needs to be substituded first, and then use `eval` to be calculated as an Python expression.
 
-`notice` is a string, which is used to inform the user about something. It is optional and in default it is an empty string. This information may be used by the backend parsers.
+`reminder` is a string, which is used to inform the user about something. It is optional and in default it is an empty string. This information may be used by the backend parsers.
 
-Notice that `default`, values of `parameters` and `stages` are substitude and evaluate required. And `notice` and the content of files are substitude required.
+Notice that `default`, values of `parameters` and `stages` are substitude and evaluate required. And `reminder` and the content of files are substitude required.
 
 In addition, there will be some built-in parameters:
 

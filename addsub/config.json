@@ -38,7 +38,7 @@
                 }
             ],
             "stages": "${STAGE}",
-            "notice": "Remember to create a adder IP in Vivado named ip_vivado_adder_${__HYPERPARAMS_JOINED__} ..."
+            "reminder": "Remember to create a adder IP in Vivado named ip_vivado_adder_${__HYPERPARAMS_JOINED__} ..."
         }
     }
 }

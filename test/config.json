@@ -58,7 +58,7 @@
                 }
             ],
             "stages": "${STAGE}",
-            "notice": "test_${__HYPERPARAMS_JOINED__}, str is ${STRTEST} and ${STRTEST2} ..."
+            "reminder": "test_${__HYPERPARAMS_JOINED__}, str is ${STRTEST} and ${STRTEST2} ..."
         }
     }
 }

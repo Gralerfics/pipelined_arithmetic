@@ -40,7 +40,7 @@
                 }
             ],
             "stages": "${STAGE}",
-            "notice": "Remember to create a multiplier IP in Vivado named ip_vivado_multiplier_${__HYPERPARAMS_JOINED__} ..."
+            "reminder": "Remember to create a multiplier IP in Vivado named ip_vivado_multiplier_${__HYPERPARAMS_JOINED__} ..."
         }
     }
 }
