@@ -26,7 +26,7 @@
         "pipelined_ripple_adder": {
             "includes": [
                 {
-                    "files": ["pipelined_ripple_adder.vhd"]
+                    "files": [["pipelined_ripple_adder.vhd", "__main__"]]
                 }
             ],
             "stages": "${WIDTH}"
@@ -34,7 +34,7 @@
         "vivado_adder": {
             "includes": [
                 {
-                    "files": ["vivado_adder.vhd"]
+                    "files": [["vivado_adder.vhd", "__main__"]]
                 }
             ],
             "stages": "${STAGE}",

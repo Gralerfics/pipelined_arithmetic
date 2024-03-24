@@ -36,7 +36,7 @@
         "vivado_multiplier": {
             "includes": [
                 {
-                    "files": ["vivado_multiplier.vhd"]
+                    "files": [["vivado_multiplier.vhd", "__main__"]]
                 }
             ],
             "stages": "${STAGE}",
