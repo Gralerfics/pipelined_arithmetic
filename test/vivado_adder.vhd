@@ -1,8 +1,8 @@
 -- +--------------------------------------------------------------------+
---   Vivado Multiplier IP
+--   Vivado Adder IP
 -- +--------------------------------------------------------------------+
 --   Description:
---       Using IP core for multiplication from Vivado.
+--       Using IP core for addition from Vivado.
 -- +--------------------------------------------------------------------+
 --   Ports:
 --       clock          clock signal
@@ -11,17 +11,17 @@
 --       flush          flush signal
 --       a, b           operands
 --       valid          valid signal
---       p              product of a and b
+--       s              sum of a and b
 -- +--------------------------------------------------------------------+
 --   Comments:
 --       Vivado IP `Adder/Subtracter` configurations:
---           Component Name:            ip_vivado_multiplier_${__HYPERPARAMS_JOINED__}
---           Data Type:                 (Un)signed, (Un)signed (related to ${SIGNED})
---           Width:                     ${WIDTH}, ${WIDTH}
---           Use Custom Output Width:   Checked
---           Output MSB:                ${OUTPUT_MSB}
---           Output LSB:                ${OUTPUT_LSB}
---           Pipeline Stages:           ${STAGE}
+--           Component Name:            ip_vivado_adder_${__HYPERPARAMS_JOINED__}
+--           Input Type:                Unsigned, Unsigned
+--           Input Width:               ${WIDTH}, ${WIDTH}
+--           Add Mode:                  Add
+--           Output Width:              ${WIDTH}
+--           Latency Configuration:     Manual
+--           Latency:                   ${STAGE}
 --           Clock Enable:              Checked
 -- +--------------------------------------------------------------------+
 
@@ -35,18 +35,18 @@ entity ${__TARGET_NAME__} is
         flush: in std_logic;
         a, b: in std_logic_vector(${WIDTH} - 1 downto 0);
         valid: out std_logic;
-        p: out std_logic_vector(${OUTPUT_MSB} - ${OUTPUT_LSB} downto 0)
+        s: out std_logic_vector(${WIDTH} - 1 downto 0)
     );
 end entity;
 
 
 architecture defaults of ${__TARGET_NAME__} is
-    component ip_vivado_multiplier_${__HYPERPARAMS_JOINED__} is
+    component ip_vivado_adder_${__HYPERPARAMS_JOINED__} is
         port (
             CLK: in std_logic;
             CE: in std_logic;
             A, B: in std_logic_vector(${WIDTH} - 1 downto 0);
-            P: out std_logic_vector(${OUTPUT_MSB} - ${OUTPUT_LSB} downto 0)
+            S: out std_logic_vector(${WIDTH} - 1 downto 0)
         );
     end component;
 
@@ -56,13 +56,13 @@ architecture defaults of ${__TARGET_NAME__} is
 
     signal valid_reg, valid_next: BitArray;
 begin
-    multiplier: ip_vivado_multiplier_${__HYPERPARAMS_JOINED__}
+    adder: ip_vivado_adder_${__HYPERPARAMS_JOINED__}
         port map (
             CLK => clock,
             CE => enable,
             A => a,
             B => b,
-            P => p
+            S => s
         );
     
     process (clock, reset) is
